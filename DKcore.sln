@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DKcore", "DKcore\DKcore.csproj", "{4B987D09-AEC1-42A6-AE52-6DE6D4A8ED1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DKcore", "DKcore\DKcore.csproj", "{4B987D09-AEC1-42A6-AE52-6DE6D4A8ED1A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DKbase", "..\DKbase\DKbase.csproj", "{CD24CD97-F2F7-410F-8AED-5E6519E1B0E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4B987D09-AEC1-42A6-AE52-6DE6D4A8ED1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B987D09-AEC1-42A6-AE52-6DE6D4A8ED1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B987D09-AEC1-42A6-AE52-6DE6D4A8ED1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD24CD97-F2F7-410F-8AED-5E6519E1B0E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD24CD97-F2F7-410F-8AED-5E6519E1B0E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD24CD97-F2F7-410F-8AED-5E6519E1B0E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD24CD97-F2F7-410F-8AED-5E6519E1B0E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
