@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DKcore.Business;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,7 +27,10 @@ namespace DKcore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTransient<ICoreService, CoreServiceTest>();
             DKbase.Helper.getConnectionStringSQL = Configuration.GetConnectionString("ConnectionSQL");
+            DKbase.Helper.getTipoApp = "DKcore";
+            DKbase.Helper.getFolder = @"C:\ArchivosSitioWEB";
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +51,7 @@ namespace DKcore
             {
                 endpoints.MapControllers();
             });
+            
         }
     }
 }
