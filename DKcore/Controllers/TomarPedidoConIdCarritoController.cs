@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using DKcore.Business;
+using DKcore.Helpers;
 
 namespace DKcore.Controllers
 {
@@ -21,11 +22,13 @@ namespace DKcore.Controllers
         {
             this.coreService = coreService;
         }
+        [Authorize]
         [HttpGet]
         public DKbase.dll.cDllPedido Get()
         {
             return coreService.TomarPedidoConIdCarrito(new post_TomarPedidoConIdCarrito());
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Create([FromBody] post_TomarPedidoConIdCarrito parameter)
         {
