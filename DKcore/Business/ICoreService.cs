@@ -1,4 +1,5 @@
 ﻿using DKbase.dll;
+using DKbase.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,6 @@ namespace DKcore.Business
 {
     public interface ICoreService
     {
-        cDllPedido TomarPedidoConIdCarrito(post_TomarPedidoConIdCarrito pValue);
+        cDllPedido TomarPedidoConIdCarrito(TomarPedidoConIdCarritoRequest pValue);
     }
 }

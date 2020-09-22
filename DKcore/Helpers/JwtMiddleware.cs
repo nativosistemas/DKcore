@@ -1,4 +1,5 @@
-﻿using DKcore.Services;
+﻿using DKbase.Entities;
+using DKcore.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -52,7 +53,7 @@ namespace DKcore.Helpers
                 var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
 
                 // attach user to context on successful jwt validation
-                context.Items["User"] = userService.GetById(userId);
+                context.Items["User"] = new User() { id = userId }; 
             }
             catch
             {
