@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DKcore.Business;
+using DKbase.Business;
 using DKcore.Helpers;
 using DKcore.Services;
 using Microsoft.AspNetCore.Builder;
@@ -37,7 +37,7 @@ namespace DKcore
 
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
-            services.AddTransient<ICoreService, CoreServiceTest>();
+            services.AddTransient<ICoreService, CoreService>();
             DKbase.Helper.getConnectionStringSQL = Configuration.GetConnectionString("ConnectionSQL");
             DKbase.Helper.getTipoApp = "DKcore";
             DKbase.Helper.getFolder = @"C:\ArchivosSitioWEB";
