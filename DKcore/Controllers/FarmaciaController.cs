@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DKbase.Entities;
-using DKbase.web;
+using DKbase.app;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using DKcore.Helpers;
 
 namespace DKcore.Controllers
 {
@@ -13,10 +14,11 @@ namespace DKcore.Controllers
     [ApiController]
     public class FarmaciaController : ControllerBase
     {
+        [Authorize]
         [HttpGet]
-        public List<Farmacia> Get()
+        public List<Farmacia> Get(string ApNombre)
         {
-            return acceso.RecuperarFarmacias();
+            return accesoApp.RecuperarFarmacias(ApNombre);
         }
     }
 }

@@ -50,10 +50,10 @@ namespace DKcore.Helpers
                 }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
-                var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+                var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "usu_codigo").Value);
 
                 // attach user to context on successful jwt validation
-                context.Items["User"] = new User() { id = userId }; 
+                context.Items["User"] = new User() { usu_codigo = userId }; 
             }
             catch
             {

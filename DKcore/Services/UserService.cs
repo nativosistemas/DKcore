@@ -33,22 +33,24 @@ namespace DKcore.Services
             //string ip = System.Web.HttpContext.Current.Server.HtmlEncode(System.Web.HttpContext.Current.Request.UserHostAddress);
             //string hostName = System.Web.HttpContext.Current.Request.UserHostName;
             if (string.IsNullOrEmpty(model.login) || string.IsNullOrEmpty(model.pass)) return null;
-            DataTable dt = DKbase.baseDatos.StoredProcedure.Login(model.login, model.pass, "", "", "");
+            //DataTable dt = DKbase.baseDatos.StoredProcedure.Login(model.login, model.pass, "", "", "");
 
+            DKbase.web.Usuario userLogin = DKbase.web.acceso.Login(model.login, model.pass, "", "", "");
 
-
-            if (dt == null || dt.Rows.Count == 0) return null;
+            if (userLogin == null || userLogin.id ==  -1) return null;
             User o = new User();
-            if (dt.Rows[0]["usu_codCliente"] != DBNull.Value)
+            o.usu_codigo = userLogin.id;
+            o.idRol = userLogin.idRol;
+            if (userLogin.usu_codCliente.HasValue)
             {
-                o.cli_codigo = Convert.ToInt32(dt.Rows[0]["usu_codCliente"]);
+                o.cli_codigo = userLogin.usu_codCliente.Value;
             }
             o.login = model.login;
 
             // authentication successful so generate jwt token
             var token = generateJwtToken(o);
 
-            return new AuthenticateResponse(o, token);
+            return new AuthenticateResponse(o, token, userLogin.ApNombre);
             
         }
         private string generateJwtToken(User user)
@@ -58,7 +60,7 @@ namespace DKcore.Services
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.id.ToString()) }),
+                Subject = new ClaimsIdentity(new[] { new Claim("usu_codigo", user.usu_codigo.ToString()) }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
@@ -71,7 +73,7 @@ namespace DKcore.Services
         // users hardcoded for simplicity, store in a db with hashed passwords in production applications
         private List<User> _users = new List<User>
         {
-            new User { id = 1,cli_codigo=233, login = "test"}
+            new User { usu_codigo = 1,cli_codigo=233, login = "test"}
         };
 
         private readonly AppSettings _appSettings;
@@ -99,9 +101,9 @@ namespace DKcore.Services
             return _users;
         }
 
-        public User GetById(int id)
+        public User GetById(int usu_codigo)
         {
-            return _users.FirstOrDefault(x => x.id == id);
+            return _users.FirstOrDefault(x => x.usu_codigo == usu_codigo);
         }
 
         // helper methods
@@ -113,7 +115,7 @@ namespace DKcore.Services
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.id.ToString()) }),
+                Subject = new ClaimsIdentity(new[] { new Claim("usu_codigo", user.usu_codigo.ToString()) }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

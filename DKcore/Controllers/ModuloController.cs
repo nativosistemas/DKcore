@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DKbase.Entities;
-using DKbase.web;
+using DKbase.app;
+using DKcore.Helpers;
 
 namespace DKcore.Controllers
 {
@@ -13,10 +14,11 @@ namespace DKcore.Controllers
     [ApiController]
     public class ModuloController : ControllerBase
     {
+        [Authorize]
         [HttpGet]
         public List<Modulo> Get()
         {
-            return acceso.RecuperarTodosModulos();
+            return accesoApp.RecuperarTodosModulos();
         }
     }
 }
