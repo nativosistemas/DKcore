@@ -12,7 +12,7 @@ namespace DKcore.Controllers
     [ApiController]
     public class PedidoController : Controller
     {
-       // [Authorize]
+        [Authorize]
         [HttpPost]
         public IActionResult Create([FromBody] DKbase.Entities.AppPedido parameter)
         {

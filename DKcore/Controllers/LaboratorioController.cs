@@ -14,7 +14,7 @@ namespace DKcore.Controllers
     [ApiController]
     public class LaboratorioController : ControllerBase
     {
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public List<Laboratorio> Get()
         {

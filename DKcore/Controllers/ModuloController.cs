@@ -14,7 +14,7 @@ namespace DKcore.Controllers
     [ApiController]
     public class ModuloController : ControllerBase
     {
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public List<Modulo> Get()
         {
