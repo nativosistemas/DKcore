@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DKbase.app;
-using Microsoft.AspNetCore.Authorization;
+using DKcore.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DKcore.Controllers
@@ -12,6 +12,12 @@ namespace DKcore.Controllers
     [ApiController]
     public class PedidoController : Controller
     {
+        [Authorize]
+        [HttpGet]
+        public List<DKbase.Entities.AppInfoPedido> Get(string ApNombre)
+        {
+            return accesoApp.RecuperarTodoInfoPedidos(ApNombre);
+        }
         [Authorize]
         [HttpPost]
         public IActionResult Create([FromBody] DKbase.Entities.AppPedido parameter)
