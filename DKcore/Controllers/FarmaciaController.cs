@@ -14,7 +14,7 @@ namespace DKcore.Controllers
     [ApiController]
     public class FarmaciaController : ControllerBase
     {
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public List<Farmacia> Get(string ApNombre)
         {

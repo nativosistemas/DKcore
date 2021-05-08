@@ -23,13 +23,13 @@ namespace DKcore.Controllers
         {
             this.coreService = coreService;
         }
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public DKbase.dll.cDllPedido Get()
         {
             return coreService.TomarPedidoConIdCarrito(new TomarPedidoConIdCarritoRequest());
         }
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public IActionResult Create([FromBody] TomarPedidoConIdCarritoRequest parameter)
         {

@@ -13,7 +13,7 @@ namespace DKcore.Controllers
     [ApiController]
     public class SincronizadorAppController : ControllerBase
     {
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public DKbase.Entities.cSincronizadorApp Get(string ApNombre)
         {
