@@ -12,13 +12,7 @@ namespace DKcore.Controllers
     [ApiController]
     public class PedidoController : Controller
     {
-        [Authorize]
-        [HttpGet]
-        public List<DKbase.Entities.AppInfoPedido> Get(string ApNombre)
-        {
-            return accesoApp.RecuperarTodoInfoPedidos(ApNombre);
-        }
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public IActionResult Create([FromBody] DKbase.Entities.AppPedido parameter)
         {
