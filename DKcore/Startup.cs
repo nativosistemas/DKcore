@@ -39,6 +39,7 @@ namespace DKcore
             services.AddScoped<IUserService, UserService>();
             services.AddTransient<ICoreService, CoreService>();
             DKbase.Helper.getConnectionStringSQL = Configuration.GetConnectionString("ConnectionSQL");
+            DKbase.Helper.getConnectionStringSQL_Desarrollo = Configuration.GetConnectionString("ConnectionSQL_Desarrollo");
             DKbase.Helper.getTipoApp = "DKcore";
             DKbase.Helper.getFolder = @"C:\ArchivosSitioWEB";
         }

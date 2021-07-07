@@ -13,17 +13,6 @@ namespace DKcore.Controllers
     [ApiController]
     public class SincronizadorAppController : ControllerBase
     {
-        //[Authorize]
-        [HttpGet]
-        public DKbase.Entities.cSincronizadorApp Get(string ApNombre)
-        {
-            DKbase.Entities.cSincronizadorApp result = new DKbase.Entities.cSincronizadorApp();
-            result.listaFarmacia = accesoApp.RecuperarFarmacias(ApNombre);
-            result.listaLaboratorio = accesoApp.GetLaboratorios();
-            result.listaModulo = accesoApp.RecuperarTodosModulos();
-            result.listaAppInfoPedido = accesoApp.RecuperarTodoInfoPedidos(ApNombre);
-            return result;
-        }
         [HttpPost]
         public DKbase.Entities.cSincronizadorApp Create([FromBody] DKbase.Entities.AppPedido parameter)
         {
@@ -36,7 +25,8 @@ namespace DKcore.Controllers
             {
                 result.pedidoGuid = accesoApp.AddPedido(parameter);
             }
-            return result;
+            result.listaAppPedidoModuloHistorial = accesoApp.RecuperarTodoPedidoModuloHistorial(parameter.promotor);
+            return result; 
         }
     }
 }
